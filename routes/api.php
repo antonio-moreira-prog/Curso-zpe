@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Curriculo\ListarCurriculosController;
 use App\Http\Controllers\Curriculo\CriarCurriculoController;
+use App\Http\Controllers\Curriculo\EditarCurriculoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +28,7 @@ Route::post('/dependencias/{id}', function (Request $request, int $id) {
 })  ->name('dependencia')
     ->where('id', '[0-9]+');
 
-Route::get('/curriculo/list', ListarCurriculosController::class);
-Route::post('/curriculo/salvar', CriarCurriculoController::class);
+Route::get('/curriculo{id}', ListarCurriculosController::class);
+Route::post('/curriculo', CriarCurriculoController::class);
+Route::put('/curriculo/{id}', EditarCurriculoController::class) -> where(['id' => '[0-9]+']);
+Route::delete('/curriculo/{id}', DeletarCurriculoController::class);
