@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Curriculo;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Curriculo\CriarCurriculoRequest;
 use App\Models\Curriculo\Curriculo;
-use Illuminate\Http\Request;
 
 class ListarCurriculosController extends Controller
 {
@@ -17,7 +17,7 @@ class ListarCurriculosController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function __invoke(CriarCurriculoRequest $request)
     {
         $curriculos = $this->curriculos->get();
         return response() -> json ($curriculos, 200);
