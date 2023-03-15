@@ -31,4 +31,4 @@ Route::post('/dependencias/{id}', function (Request $request, int $id) {
 Route::get('/curriculo{id}', ListarCurriculosController::class);
 Route::post('/curriculo', CriarCurriculoController::class);
 Route::put('/curriculo/{id}', EditarCurriculoController::class) -> where(['id' => '[0-9]+']);
-Route::delete('/curriculo/{id}', DeletarCurriculoController::class);
+Route::delete('/curriculo/{id}', DeletarCurriculoController::class) -> where(['id' => '[0-9]+']);
