@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Curriculo\Curriculo;
 use Illuminate\Http\Request;
 use PHPUnit\Exception;
+use Illuminate\Validation\Rule;
 
 class CriarCurriculoController extends Controller
 {
@@ -14,8 +15,12 @@ class CriarCurriculoController extends Controller
     {
         $this->curriculo = $curriculo;
     }
+
     /**
      * Handle the incoming request.
+     * @param Request $request
+     * @param $registro
+     * @return array|\Illuminate\Http\JsonResponse
      */
     public function __invoke(Request $request)
     {
@@ -31,4 +36,6 @@ class CriarCurriculoController extends Controller
         }
         return $request->all();
     }
+
+
 }
