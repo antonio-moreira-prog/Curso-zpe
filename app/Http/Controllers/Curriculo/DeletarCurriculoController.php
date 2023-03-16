@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Curriculo;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Curriculo\EditarCurriculoRequest;
 use App\Models\Curriculo\Curriculo;
 use Exception;
 
-class EditarCurriculoController extends Controller
+class DeletarCurriculoController extends Controller
 {
     private $curriculo;
 
@@ -16,16 +15,11 @@ class EditarCurriculoController extends Controller
         $this->curriculo = $curriculo;
     }
 
-    public function __invoke(EditarCurriculoRequest $request, $id = null)
+    public function __invoke($id = null)
     {
         try {
-            $curriculo = $this->curriculo->findOrFail($id ?? $request->id);
-            $curriculo->update($request->only([
-                'first_name',
-                'last_name',
-                'email',
-                'confirmado'
-            ]));
+            $curriculo = $this->curriculo->findOrFail($id);
+            $curriculo->delete();
 
             return response()->json($curriculo, 200);
         } catch (Exception $e) {
