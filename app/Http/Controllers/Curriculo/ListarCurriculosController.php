@@ -9,17 +9,21 @@ use Illuminate\Http\Request;
 class ListarCurriculosController extends Controller
 {
     private $curriculos;
+
     public function __construct(Curriculo $curriculos)
     {
         $this->curriculos = $curriculos;
     }
-
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function __invoke(Request $request, $id = null)
     {
-        $curriculos = $this->curriculos->get();
-        return response() -> json ($curriculos, 200);
+        if (!empty($id))
+            $curriculos = $this->curriculos->findOrFail($id);
+        else
+            $curriculos = $this->curriculos->get();
+
+        return response()->json($curriculos, 200);
     }
 }

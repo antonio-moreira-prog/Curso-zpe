@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Curriculo;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Curriculo\CriarCurriculoRequest;
+use App\Http\Requests\StoreUserRequest;
 use App\Models\Curriculo\Curriculo;
 use Illuminate\Http\Request;
 use PHPUnit\Exception;
@@ -22,7 +24,7 @@ class CriarCurriculoController extends Controller
      * @param $registro
      * @return array|\Illuminate\Http\JsonResponse
      */
-    public function __invoke(Request $request)
+    public function __invoke(CriarCurriculoRequest $request)
     {
         try {
             $curriculo = $this->curriculo->create($request->only([
